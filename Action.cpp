@@ -1,3 +1,10 @@
+/** Class to hold an action with start and end coordinates
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #include "Action.h"
 
 namespace CheckersSzeto

@@ -1,3 +1,11 @@
+/** Queue of Action objects, implemented by a linked list
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef ACTIONQUEUE_H
 #define ACTIONQUEUE_H
 

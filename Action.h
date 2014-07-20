@@ -1,3 +1,10 @@
+/** Class to hold an action with start and end coordinates
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #ifndef ACTION_H
 #define ACTION_H
 

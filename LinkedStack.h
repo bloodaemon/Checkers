@@ -1,3 +1,11 @@
+/** Stack of pointers implemented by a linked list
+  *
+  * @author Richard
+  *
+  *
+  *
+  */
+
 #ifndef LINKEDSTACK_H
 #define LINKEDSTACK_H
 

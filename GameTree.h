@@ -1,3 +1,11 @@
+/** GameTree for the AI
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef GAMETREE_H
 #define GAMETREE_H
 

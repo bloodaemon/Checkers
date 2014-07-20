@@ -1,3 +1,11 @@
+/** Node that holds the possible states for the AI
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef GAMETREENODE_H
 #define GAMETREENODE_H
 

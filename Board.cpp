@@ -1,3 +1,10 @@
+/** Class that holds the board, all the pieces, and the state of the game
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #include <iostream>
 #include <cstdlib>
 #include "Board.h"

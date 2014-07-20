@@ -1,3 +1,10 @@
+/** Class used to hold Actions for linked lists
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #include <cstddef>
 #include "ActionNode.h"
 

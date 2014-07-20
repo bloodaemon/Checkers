@@ -1,3 +1,11 @@
+/** Post order iterator for GameTree
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #include <cstddef>
 #include "PostOrderIterator.h"
 

@@ -1,3 +1,10 @@
+/** Class that holds the board, all the pieces, and the state of the game
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #ifndef BOARD_H
 #define BOARD_H
 

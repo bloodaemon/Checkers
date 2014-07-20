@@ -1,3 +1,11 @@
+/** Post order iterator for GameTree
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef POSTORDERITERATOR_H
 #define POSTORDERITERATOR_H
 

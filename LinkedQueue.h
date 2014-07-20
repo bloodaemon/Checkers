@@ -1,3 +1,11 @@
+/** Queue implemented by a linked list
+  *
+  * @author Richard
+  *
+  *
+  *
+  */
+
 #ifndef LINKEDQUEUE_H
 #define LINKEDQUEUE_H
 

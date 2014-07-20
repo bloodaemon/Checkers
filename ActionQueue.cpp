@@ -1,3 +1,10 @@
+/** Queue of Action objects, implemented by a linked list
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #include <cstddef>
 #include "ActionQueue.h"
 

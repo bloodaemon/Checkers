@@ -1,3 +1,10 @@
+/** Class used to hold Actions for linked lists
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #ifndef ACTIONNODE_H
 #define ACTIONNODE_H
 

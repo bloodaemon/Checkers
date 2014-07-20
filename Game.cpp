@@ -1,3 +1,11 @@
+/** Class that governs the majority of the UI
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #include <iostream>
 #include <string>
 #include "Game.h"

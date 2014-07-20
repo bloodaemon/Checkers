@@ -1,3 +1,11 @@
+/** Stack that holds captured pieces, implemented by an array
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #include <cstddef>
 #include "Captured.h"
 

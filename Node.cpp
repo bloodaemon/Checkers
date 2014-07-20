@@ -1,3 +1,11 @@
+/** Node of pointers for a linked list
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef NODE_CPP
 #define NODE_CPP
 

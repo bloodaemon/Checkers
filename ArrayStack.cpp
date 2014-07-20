@@ -1,3 +1,11 @@
+/** Stack implemented by an array
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef ARRAYSTACK_CPP
 #define ARRAYSTACK_CPP
 

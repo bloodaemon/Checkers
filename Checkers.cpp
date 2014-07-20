@@ -1,3 +1,10 @@
+/** Driver for the game
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #include <iostream>
 #include "Game.h"
 

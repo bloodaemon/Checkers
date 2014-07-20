@@ -1,3 +1,11 @@
+/** Various global variables and types
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef GLOBALS_H
 #define GLOBALS_H
 

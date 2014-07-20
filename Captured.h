@@ -1,3 +1,11 @@
+/** Stack that holds captured pieces, implemented by an array
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef CAPTURED_H
 #define CAPTURED_H
 

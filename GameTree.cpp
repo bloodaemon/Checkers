@@ -1,3 +1,11 @@
+/** GameTree for the AI
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #include <cstddef>
 #include <climits>
 #include "GameTree.h"

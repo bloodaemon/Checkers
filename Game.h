@@ -1,3 +1,11 @@
+/** Class that governs the majority of the UI
+  *
+  * @author Richard Szeto
+  *
+  *
+  *
+  */
+
 #ifndef GAME_H
 #define GAME_H
 

@@ -1,3 +1,10 @@
+/** Stack implemented by an array
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #ifndef ARRAYSTACK_H
 #define ARRAYSTACK_H
 
