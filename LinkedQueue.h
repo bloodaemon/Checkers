@@ -1,4 +1,4 @@
-/** Queue implemented by a linked list
+/** Queue of pointers implemented by a linked list
   *
   * @author Richard
   *
