@@ -9,11 +9,14 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <string>
 #include "Board.h"
 #include "GameTree.h"
 
 namespace CheckersSzeto
 {
+    using std::string;
+    
     class Game
     {
     public:
@@ -25,6 +28,7 @@ namespace CheckersSzeto
         void gobbleAll();
         void setNextDigit(int &number, int digit);
         int getNextNumber();
+        string makeLower(const string &s);
         void showMainMenu();
         void playCheckers();
         void showBeginningGame();

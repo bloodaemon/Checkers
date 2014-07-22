@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include <cctype>
 #include "Game.h"
 #include "ActionQueue.h"
 #include "Action.h"
@@ -82,6 +83,14 @@ namespace CheckersSzeto
                     }
                     else
                     {
+                        gobbleAll();
+
+                        char symbol;
+
+                        symbol = '\n';
+
+                        cin.putback(symbol);
+
                         return -10;
                     }
 
@@ -182,6 +191,20 @@ namespace CheckersSzeto
                     break;
             }
         }
+    }
+
+    string Game::makeLower(const string &s)
+    {
+        using std::string;
+
+        string temp(s);
+
+        for(unsigned int i = 0; i < s.length(); i++)
+        {
+            temp[i] = tolower(s[i]);
+        }
+
+        return temp;
     }
 
     void Game::showMainMenu()
@@ -365,13 +388,13 @@ namespace CheckersSzeto
 
                 cin >> color;
 
-                if(color == "white" || color == "White" ||
-                    color == "WHITE")
+                color = makeLower(color);
+
+                if(color == "white" || color == "w")
                 {
                     humanIsWhite = true;
                 }
-                else if(color == "black" || color == "Black" ||
-                    color == "BLACK")
+                else if(color == "black" || color == "b")
                 {
                     humanIsWhite = false;
                 }
@@ -399,8 +422,9 @@ namespace CheckersSzeto
 
                 cin >> response;
 
-                if(response == "yes" || response == "YES" ||
-                    response == "y" || response == "Y")
+                response = makeLower(response);
+
+                if(response == "yes" || response == "y")
                 {
                     checkerBoard.clear();
 
@@ -458,8 +482,9 @@ namespace CheckersSzeto
 
                 cin >> response;
 
-                if(response == "yes" || response == "YES" ||
-                    response == "y" || response == "Y")
+                response = makeLower(response);
+
+                if(response == "yes" || response == "y")
                 {
                     checkerBoard.clear();
 
@@ -670,8 +695,9 @@ namespace CheckersSzeto
 
                 cin >> response;
 
-                if(response == "yes" || response == "YES" ||
-                    response == "y" || response == "Y")
+                response = makeLower(response);
+
+                if(response == "yes" || response == "y")
                 {
                     checkerBoard.clear();
 
