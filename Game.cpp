@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "ActionQueue.h"
 #include "Action.h"
+#include "globals.h"
 
 namespace CheckersSzeto
 {
@@ -27,6 +28,160 @@ namespace CheckersSzeto
     void Game::startGame()
     {
         showMainMenu();
+    }
+
+    void Game::gobbleAll()
+    {
+        using std::cin;
+
+        char symbol;
+        do
+        {
+            cin.get(symbol);
+        }
+        while(symbol != '\n');
+    }
+
+    void Game::setNextDigit(int &number, int digit)
+    {
+        number = (number * 10) + digit;
+    }
+
+    int Game::getNextNumber()
+    {
+        using std::cin;
+
+        char nextSymbol;
+
+        int result = 0;
+
+        bool isNegative = false;
+
+        do
+        {
+            cin.get(nextSymbol);
+        }while(nextSymbol == ' ' ||
+            nextSymbol == '\n' ||
+            nextSymbol == '\t' ||
+            nextSymbol == '\r');
+
+        cin.putback(nextSymbol);
+
+        while(true)
+        {
+
+            cin.get(nextSymbol);
+
+            switch(nextSymbol)
+            {
+                case '-':
+
+                    if(result == 0)
+                    {
+                        isNegative = true;
+                    }
+                    else
+                    {
+                        return -10;
+                    }
+
+                    break;
+
+                case '0':
+
+                    setNextDigit(result, 0);
+
+                    break;
+
+                case '1':
+
+                    setNextDigit(result, 1);
+
+                    break;
+
+                case '2':
+
+                    setNextDigit(result, 2);
+
+                    break;
+
+                case '3':
+
+                    setNextDigit(result, 3);
+
+                    break;
+
+                case '4':
+
+                    setNextDigit(result, 4);
+
+                    break;
+
+                case '5':
+
+                    setNextDigit(result, 5);
+
+                    break;
+
+                case '6':
+
+                    setNextDigit(result, 6);
+
+                    break;
+
+                case '7':
+
+                    setNextDigit(result, 7);
+
+                    break;
+
+                case '8':
+
+                    setNextDigit(result, 8);
+
+                    break;
+
+                case '9':
+
+                    setNextDigit(result, 9);
+
+                    break;
+
+                default:
+
+                    if(nextSymbol == ' ' ||
+                        nextSymbol == '\n' ||
+                        nextSymbol == '\t' ||
+                        nextSymbol == '\r')
+                    {
+                        if(nextSymbol == '\n')
+                        {
+                            cin.putback(nextSymbol);
+                        }
+
+                        if(isNegative)
+                        {
+                            return -1 * result;
+                        }
+                        else
+                        {
+                            return result;
+                        }
+                    }
+                    else
+                    {
+                        gobbleAll();
+
+                        char newLine = '\n';
+
+                        cin.putback(newLine);
+
+                        return -10;
+                    }
+
+                    break;
+            }
+        }
     }
 
     void Game::showMainMenu()
@@ -61,7 +216,9 @@ namespace CheckersSzeto
             {
                 cout << "Enter a number from 1 - 3: ";
 
-                cin >> selection;
+                selection = getNextNumber();
+
+                gobbleAll();
 
                 invalidSelection = false;
 
@@ -124,7 +281,9 @@ namespace CheckersSzeto
             {
                 cout << "Enter a number from 1 - 3: ";
 
-                cin >> selection;
+                selection = getNextNumber();
+
+                gobbleAll();
 
                 invalidSelection = false;
 
@@ -210,6 +369,17 @@ namespace CheckersSzeto
                     color == "WHITE")
                 {
                     humanIsWhite = true;
+                }
+                else if(color == "black" || color == "Black" ||
+                    color == "BLACK")
+                {
+                    humanIsWhite = false;
+                }
+                else
+                {
+                    cout << "Invalid Input\n";
+
+                    continue;
                 }
 
                 showBeginningGame();
@@ -318,7 +488,7 @@ namespace CheckersSzeto
 
                 cout << "Enter startX startY endX endY: ";
                 
-                cin >> startX;
+                startX = getNextNumber();
                 
                 if(startX == -1)
                 {
@@ -340,8 +510,18 @@ namespace CheckersSzeto
 
                     break;
                 }
+                else if(startX == -10 ||
+                    startX < 0 ||
+                    startX >= GRID_LENGTH)
+                {
+                    cout << "Invalid Input\n";
+
+                    gobbleAll();
+
+                    continue;
+                }
                 
-                cin >> startY;
+                startY = getNextNumber();
                 
                 if(startY == -1)
                 {
@@ -363,8 +543,18 @@ namespace CheckersSzeto
 
                     break;
                 }
+                else if(startY == -10 ||
+                    startY < 0 ||
+                    startY >= GRID_LENGTH)
+                {
+                    cout << "Invalid Input\n";
+
+                    gobbleAll();
+
+                    continue;
+                }
                 
-                cin >> endX;
+                endX = getNextNumber();
                 
                 if(endX == -1)
                 {
@@ -386,8 +576,18 @@ namespace CheckersSzeto
 
                     break;
                 }
+                else if(endX == -10 ||
+                    endX < 0 ||
+                    endX >= GRID_LENGTH)
+                {
+                    cout << "Invalid Input\n";
+
+                    gobbleAll();
+
+                    continue;
+                }
                 
-                cin >> endY;
+                endY = getNextNumber();
                 
                 if(endY == -1)
                 {
@@ -409,8 +609,28 @@ namespace CheckersSzeto
 
                     break;
                 }
+                else if(endY == -10 ||
+                    endY < 0 ||
+                    endY >= GRID_LENGTH)
+                {
+                    cout << "Invalid Input\n";
+
+                    gobbleAll();
+
+                    continue;
+                }
+
+                gobbleAll();
                 
                 validMove = checkerBoard.move(startX, startY, endX, endY);
+
+                if(!validMove)
+                {
+                    cout << "Invalid Move\n";
+
+                    continue;
+                }
+
                 checkerBoard.printBoard();
                 checkerBoard.printTurn();
 
@@ -467,7 +687,7 @@ namespace CheckersSzeto
 
             cout << "Enter startX startY endX endY: ";
             
-            cin >> startX;
+            startX = getNextNumber();
             
             if(startX == -1)
             {
@@ -481,8 +701,18 @@ namespace CheckersSzeto
 
                 continue;
             }
+            else if(startX == -10 ||
+                startX < 0 ||
+                startX >= GRID_LENGTH)
+            {
+                cout << "Invalid Input\n";
+
+                gobbleAll();
+
+                continue;
+            }
             
-            cin >> startY;
+            startY = getNextNumber();
             
             if(startY == -1)
             {
@@ -496,8 +726,18 @@ namespace CheckersSzeto
 
                 continue;
             }
+            else if(startY == -10 ||
+                startY < 0 ||
+                startY >= GRID_LENGTH)
+            {
+                cout << "Invalid Input\n";
+
+                gobbleAll();
+
+                continue;
+            }
             
-            cin >> endX;
+            endX = getNextNumber();
             
             if(endX == -1)
             {
@@ -511,8 +751,18 @@ namespace CheckersSzeto
 
                 continue;
             }
+            else if(endX == -10 ||
+                endX < 0 ||
+                endX >= GRID_LENGTH)
+            {
+                cout << "Invalid Input\n";
+
+                gobbleAll();
+
+                continue;
+            }
             
-            cin >> endY;
+            endY = getNextNumber();
             
             if(endY == -1)
             {
@@ -526,8 +776,26 @@ namespace CheckersSzeto
 
                 continue;
             }
+            else if(endY == -10 ||
+                endY < 0 ||
+                endY >= GRID_LENGTH)
+            {
+                cout << "Invalid Input\n";
+
+                gobbleAll();
+
+                continue;
+            }
+
+            gobbleAll();
             
-            checkerBoard.move(startX, startY, endX, endY);
+            if(!checkerBoard.move(startX, startY, endX, endY))
+            {
+                cout << "Invalid Move\n";
+
+                continue;
+            }
+
             checkerBoard.printBoard();
             checkerBoard.printTurn();
 

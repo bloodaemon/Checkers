@@ -11,7 +11,7 @@ Checkers.out: $(OBJS)
 Checkers.o: Checkers.cpp Game.h
 	$(CC) $(CFLAGS) Checkers.cpp
 
-Game.o: Game.h Game.cpp Board.h GameTree.h ActionQueue.h Action.h
+Game.o: Game.h Game.cpp Board.h GameTree.h ActionQueue.h Action.h globals.h
 	$(CC) $(CFLAGS) Game.cpp
 
 GameTree.o: GameTree.h GameTree.cpp PostOrderIterator.h GameTreeNode.h LinkedQueue.h ActionQueue.h globals.h

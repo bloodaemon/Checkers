@@ -22,6 +22,9 @@ namespace CheckersSzeto
         void startGame();
 
     protected:
+        void gobbleAll();
+        void setNextDigit(int &number, int digit);
+        int getNextNumber();
         void showMainMenu();
         void playCheckers();
         void showBeginningGame();
