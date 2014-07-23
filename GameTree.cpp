@@ -50,6 +50,8 @@ namespace CheckersSzeto
 
         deleteSubTree(root);
 
+        root = NULL;
+
         root = new GameTreeNode(currentBoard);
 
         utilityValue = maxValue(root, NEG_INFINITY, INFINITY, maxDepth - 1);
@@ -65,12 +67,16 @@ namespace CheckersSzeto
 
                     deleteSubTree(root);
 
+                    root = NULL;
+
                     return result;
                 }
             }
         }
 
         deleteSubTree(root);
+
+        root = NULL;
 
         return ActionQueue();
     }

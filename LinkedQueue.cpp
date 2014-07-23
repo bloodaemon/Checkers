@@ -65,6 +65,8 @@ namespace DataStructureSzeto
     template<class T>
     LinkedQueue<T>& LinkedQueue<T>::operator =(const LinkedQueue<T> &rightSide)
     {
+        clear();
+
         Node<T> *otherNode;
 
         front = NULL;

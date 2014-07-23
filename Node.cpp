@@ -55,12 +55,16 @@ namespace DataStructureSzeto
     template<class T>
     void Node<T>::clear()
     {
-        // deliberately left empty
+        data = NULL;
+
+        link = NULL;
     }
 
     template<class T>
     Node<T>& Node<T>::operator =(const Node<T> &rightSide)
     {
+        clear();
+
         data = rightSide.getData();
 
         link = NULL;

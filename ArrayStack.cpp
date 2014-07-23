@@ -71,6 +71,15 @@ namespace DataStructureSzeto
     template<class T>
     ArrayStack<T>& ArrayStack<T>::operator =(const ArrayStack<T> &rightSide)
     {
+        clear();
+
+        if(stack != NULL)
+        {
+            delete [] stack;
+
+            stack = NULL;
+        }
+
         capacity = rightSide.capacity;
 
         length = rightSide.length;

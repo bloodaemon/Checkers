@@ -57,6 +57,8 @@ namespace CheckersSzeto
 
     ActionQueue& ActionQueue::operator =(const ActionQueue &rightSide)
     {
+        clear();
+
     	ActionNode *otherNode;
 
     	front = NULL;

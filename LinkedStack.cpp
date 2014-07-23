@@ -63,6 +63,8 @@ namespace DataStructureSzeto
     template<class T>
     LinkedStack<T>& LinkedStack<T>::operator =(const LinkedStack<T> &rightSide)
     {
+        clear();
+
         Node<T> *currentNode;
 
         Node<T> *otherNode;

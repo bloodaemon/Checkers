@@ -80,6 +80,15 @@ namespace CheckersSzeto
 
     Captured& Captured::operator =(const Captured &rightSide)
     {
+        clear();
+
+        if(stack != NULL)
+        {
+            delete [] stack;
+
+            stack = NULL;
+        }
+        
         capacity = rightSide.capacity;
 
         length = rightSide.length;

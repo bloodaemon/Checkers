@@ -50,6 +50,8 @@ namespace CheckersSzeto
 
     PostOrderIterator& PostOrderIterator::operator =(const PostOrderIterator &rightSide)
     {
+        clear();
+
         currentNode = rightSide.currentNode;
 
         stack = rightSide.stack;

@@ -85,6 +85,8 @@ namespace CheckersSzeto
 
     GameTreeNode& GameTreeNode::operator =(const GameTreeNode &rightSide)
     {
+        clear();
+
         if(rightSide.data != NULL)
         {
             data = new Board(*(rightSide.data));

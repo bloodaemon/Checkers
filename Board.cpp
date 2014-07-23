@@ -76,6 +76,24 @@ namespace CheckersSzeto
 
     Board& Board::operator =(const Board &rightSide)
     {
+        if(captured[WHITE] != NULL)
+        {
+            captured[WHITE]->clear();
+
+            delete captured[WHITE];
+
+            captured[WHITE] = NULL;
+        }
+
+        if(captured[BLACK] != NULL)
+        {
+            captured[BLACK]->clear();
+
+            delete captured[BLACK];
+
+            captured[BLACK] = NULL;
+        }
+
         for(int i = 0; i < GRID_LENGTH; i++)
         {
             for(int j = 0; j < GRID_LENGTH; j++)

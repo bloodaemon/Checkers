@@ -9,6 +9,8 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <new>
+#include <cstdlib>
 #include "Game.h"
 #include "ActionQueue.h"
 #include "Action.h"
@@ -36,6 +38,7 @@ namespace CheckersSzeto
         using std::cin;
 
         char symbol;
+
         do
         {
             cin.get(symbol);
@@ -357,8 +360,9 @@ namespace CheckersSzeto
         using std::endl;
         using std::cin;
         using std::string;
+        using std::bad_alloc;
 
-        const int maxDepth = 11;
+        const int maxDepth = 9;
 
         bool isPreGame = true;
 
@@ -446,13 +450,28 @@ namespace CheckersSzeto
 
             if(!(humanIsWhite && isFirstTurn))
             {
-                ActionQueue actionQueue;
+                ActionQueue newActionQueue;
 
-                actionQueue = gameTree.alphaBetaSearch(checkerBoard, maxDepth);
+                ActionQueue oldActionQueue;
 
-                while(!actionQueue.isEmpty())
+                for(int i = 3; i <= maxDepth; i++)
                 {
-                    Action action = actionQueue.removeFront();
+                    oldActionQueue.clear();
+
+                    oldActionQueue = newActionQueue;
+
+                    newActionQueue.clear();
+
+                    newActionQueue = gameTree.alphaBetaSearch(checkerBoard, i);
+                }
+
+                oldActionQueue.clear();
+
+                oldActionQueue = newActionQueue;
+
+                while(!oldActionQueue.isEmpty())
+                {
+                    Action action = oldActionQueue.removeFront();
 
                     checkerBoard.scanCapture();
 
@@ -517,6 +536,8 @@ namespace CheckersSzeto
                 
                 if(startX == -1)
                 {
+                    checkerBoard.clear();
+
                     return;
                 }
                 else if(startX == -2)
@@ -550,6 +571,8 @@ namespace CheckersSzeto
                 
                 if(startY == -1)
                 {
+                    checkerBoard.clear();
+
                     return;
                 }
                 else if(startY == -2)
@@ -583,6 +606,8 @@ namespace CheckersSzeto
                 
                 if(endX == -1)
                 {
+                    checkerBoard.clear();
+
                     return;
                 }
                 else if(endX == -2)
@@ -616,6 +641,8 @@ namespace CheckersSzeto
                 
                 if(endY == -1)
                 {
+                    checkerBoard.clear();
+
                     return;
                 }
                 else if(endY == -2)
@@ -717,6 +744,8 @@ namespace CheckersSzeto
             
             if(startX == -1)
             {
+                checkerBoard.clear();
+
                 break;
             }
             else if(startX == -2)
@@ -742,6 +771,8 @@ namespace CheckersSzeto
             
             if(startY == -1)
             {
+                checkerBoard.clear();
+
                 break;
             }
             else if(startY == -2)
@@ -767,6 +798,8 @@ namespace CheckersSzeto
             
             if(endX == -1)
             {
+                checkerBoard.clear();
+
                 break;
             }
             else if(endX == -2)
@@ -792,6 +825,8 @@ namespace CheckersSzeto
             
             if(endY == -1)
             {
+                checkerBoard.clear();
+
                 break;
             }
             else if(endY == -2)
