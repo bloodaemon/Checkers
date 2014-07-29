@@ -14,7 +14,7 @@ Checkers.o: Checkers.cpp Game.h
 Game.o: Game.h Game.cpp Board.h GameTree.h ActionQueue.h Action.h globals.h
 	$(CC) $(CFLAGS) Game.cpp
 
-GameTree.o: GameTree.h GameTree.cpp PostOrderIterator.h GameTreeNode.h LinkedQueue.h ActionQueue.h TimeUp.h Timer.h globals.h
+GameTree.o: GameTree.h GameTree.cpp PostOrderIterator.h GameTreeNode.h LinkedQueue.h ActionQueue.h Timer.h globals.h
 	$(CC) $(CFLAGS) GameTree.cpp
 
 Timer.o: Timer.h Timer.cpp
