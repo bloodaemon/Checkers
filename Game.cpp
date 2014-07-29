@@ -9,11 +9,11 @@
 #include <iostream>
 #include <string>
 #include <cctype>
-#include <new>
 #include <cstdlib>
 #include "Game.h"
 #include "ActionQueue.h"
 #include "Action.h"
+#include "Timer.h"
 #include "globals.h"
 
 namespace CheckersSzeto
@@ -360,9 +360,12 @@ namespace CheckersSzeto
         using std::endl;
         using std::cin;
         using std::string;
-        using std::bad_alloc;
 
-        const int maxDepth = 9;
+        const int maxDepth = 100;
+
+        const unsigned long milliseconds = 500; // 0.5 seconds
+
+        Timer timer;
 
         bool isPreGame = true;
 
@@ -450,24 +453,21 @@ namespace CheckersSzeto
 
             if(!(humanIsWhite && isFirstTurn))
             {
-                ActionQueue newActionQueue;
-
                 ActionQueue oldActionQueue;
 
-                for(int i = 3; i <= maxDepth; i++)
+                timer.reset();
+
+                timer.start();
+
+                for(int i = 3; i <= maxDepth && 
+                    timer.isOver(milliseconds); i++)
                 {
                     oldActionQueue.clear();
 
-                    oldActionQueue = newActionQueue;
-
-                    newActionQueue.clear();
-
-                    newActionQueue = gameTree.alphaBetaSearch(checkerBoard, i);
+                    oldActionQueue = gameTree.alphaBetaSearch(checkerBoard, i);
                 }
 
-                oldActionQueue.clear();
-
-                oldActionQueue = newActionQueue;
+                timer.stop();
 
                 while(!oldActionQueue.isEmpty())
                 {
