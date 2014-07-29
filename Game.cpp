@@ -13,7 +13,6 @@
 #include "Game.h"
 #include "ActionQueue.h"
 #include "Action.h"
-#include "Timer.h"
 #include "globals.h"
 
 namespace CheckersSzeto
@@ -262,7 +261,7 @@ namespace CheckersSzeto
 
                     case 3:
                         invalidSelection = false;
-                        return;
+                        exit(0);
                         break;
 
                     default:
@@ -365,7 +364,7 @@ namespace CheckersSzeto
 
         const unsigned long milliseconds = 500; // 0.5 seconds
 
-        Timer timer;
+        gameTree.setTime(milliseconds);
 
         bool isPreGame = true;
 
@@ -455,19 +454,23 @@ namespace CheckersSzeto
             {
                 ActionQueue oldActionQueue;
 
-                timer.reset();
+                ActionQueue newActionQueue;
 
-                timer.start();
-
-                for(int i = 3; i <= maxDepth && 
-                    timer.isOver(milliseconds); i++)
+                for(int i = 3; i <= maxDepth; i++)
                 {
                     oldActionQueue.clear();
 
-                    oldActionQueue = gameTree.alphaBetaSearch(checkerBoard, i);
-                }
+                    oldActionQueue = newActionQueue;
 
-                timer.stop();
+                    newActionQueue.clear();
+
+                    newActionQueue = gameTree.alphaBetaSearch(checkerBoard, i);
+
+                    if(newActionQueue.isEmpty())
+                    {
+                        break;
+                    }
+                }
 
                 while(!oldActionQueue.isEmpty())
                 {

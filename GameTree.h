@@ -14,6 +14,7 @@
 #include "globals.h"
 #include "LinkedQueue.h"
 #include "LinkedQueue.cpp"
+#include "Timer.h"
 
 namespace CheckersSzeto
 {
@@ -33,6 +34,8 @@ namespace CheckersSzeto
         GameTree();
         ~GameTree();
         void clear();
+        void setTime(const unsigned long &milliseconds);
+        unsigned long getTime() const;
         PostOrderIterator getPostOrderIterator();
         ActionQueue alphaBetaSearch(const Board &currentBoard, int maxDepth);
 
@@ -51,6 +54,8 @@ namespace CheckersSzeto
         void deleteSubTree(GameTreeNode *subTreeRoot);
 
         GameTreeNode *root;
+        Timer timer;
+        unsigned long milliseconds;
     };
 }
 

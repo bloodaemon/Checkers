@@ -13,6 +13,7 @@
 #include "LinkedQueue.h"
 #include "LinkedQueue.cpp"
 #include "ActionQueue.h"
+#include "Timer.h"
 
 namespace CheckersSzeto
 {
@@ -25,6 +26,7 @@ namespace CheckersSzeto
     GameTree::GameTree()
     {
         root = NULL;
+        milliseconds = 1000; // 1 second
     }
 
     GameTree::~GameTree()
@@ -37,6 +39,16 @@ namespace CheckersSzeto
         deleteSubTree(root);
 
         root = NULL;
+    }
+
+    void GameTree::setTime(const unsigned long &milliseconds)
+    {
+        this->milliseconds = milliseconds;
+    }
+
+    unsigned long GameTree::getTime() const
+    {
+        return milliseconds;
     }
 
     PostOrderIterator GameTree::getPostOrderIterator()
@@ -54,7 +66,22 @@ namespace CheckersSzeto
 
         root = new GameTreeNode(currentBoard);
 
+        timer.start();
+
         utilityValue = maxValue(root, NEG_INFINITY, INFINITY, maxDepth - 1);
+
+        if(timer.isOver(milliseconds))
+        {
+            timer.stop();
+
+            timer.reset();
+
+            deleteSubTree(root);
+
+            root = NULL;
+
+            return ActionQueue();
+        }
 
         if(root != NULL)
         {
@@ -94,7 +121,30 @@ namespace CheckersSzeto
             return state->getValue();
         }
 
+        if(timer.isOver(milliseconds))
+        {
+            return 0;
+        }
+
         createChildren(state);
+
+        if(timer.isOver(milliseconds))
+        {
+            for(int i = 0; i < state->getNumberOfChildren(); i++)
+            {
+                if(state->getChild(i) != NULL)
+                {
+                    if(state != root)
+                    {
+                        deleteSubTree(state->getChild(i));
+
+                        state->setChild(i, NULL);
+                    }
+                }
+            }
+
+            return 0;
+        }
 
         int utilityValue;
 
@@ -143,7 +193,30 @@ namespace CheckersSzeto
             return state->getValue();
         }
 
+        if(timer.isOver(milliseconds))
+        {
+            return 0;
+        }
+
         createChildren(state);
+
+        if(timer.isOver(milliseconds))
+        {
+            for(int i = 0; i < state->getNumberOfChildren(); i++)
+            {
+                if(state->getChild(i) != NULL)
+                {
+                    if(state != root)
+                    {
+                        deleteSubTree(state->getChild(i));
+
+                        state->setChild(i, NULL);
+                    }
+                }
+            }
+
+            return 0;
+        }
 
         int utilityValue;
 
@@ -281,6 +354,13 @@ namespace CheckersSzeto
             {
                 for(int j = startingIndex; j < GRID_LENGTH; j += 2)
                 {
+                    if(timer.isOver(milliseconds))
+                    {
+                        nodeQueue.clear();
+
+                        return;
+                    }
+
                     if(currentBoard->isPieceColor(currentTurn, i, j))
                     {
                         if(currentBoard->needToCapture)
@@ -291,9 +371,23 @@ namespace CheckersSzeto
 
                             queueAllNextCaptureStates(nextState, 
                                 currentTurn, i, j, nodeQueue);
+
+                            if(timer.isOver(milliseconds))
+                            {
+                                nodeQueue.clear();
+
+                                return;
+                            }
                         }
                         else
                         {
+                            if(timer.isOver(milliseconds))
+                            {
+                                nodeQueue.clear();
+
+                                return;
+                            }
+
                             if((currentBoard->isPieceColor(WHITE, i, j) &&
                                 currentBoard->isMan(i, j)) || 
                                     (currentBoard->isKing(i, j)))
@@ -351,6 +445,17 @@ namespace CheckersSzeto
     void GameTree::queueAllNextCaptureStates(GameTreeNode *currentState, Color currentTurn, 
         int startX, int startY, LinkedQueue<GameTreeNode> &nodeQueue)
     {
+        if(timer.isOver(milliseconds))
+        {
+            delete currentState;
+
+            currentState = NULL;
+
+            nodeQueue.clear();
+
+            return;
+        }
+
         Board *currentBoard;
 
         currentBoard = currentState->getData();
@@ -380,6 +485,17 @@ namespace CheckersSzeto
 
                 queueAllNextCaptureStates(nextState, currentTurn,
                     startX - 2, startY + 2, nodeQueue);
+
+                if(timer.isOver(milliseconds))
+                {
+                    delete currentState;
+
+                    currentState = NULL;
+
+                    nodeQueue.clear();
+
+                    return;
+                }
             }
 
             if(currentBoard->canCapture(startX, startY, TOP_RIGHT))
@@ -394,6 +510,17 @@ namespace CheckersSzeto
 
                 queueAllNextCaptureStates(nextState, currentTurn,
                     startX + 2, startY + 2, nodeQueue);
+
+                if(timer.isOver(milliseconds))
+                {
+                    delete currentState;
+
+                    currentState = NULL;
+
+                    nodeQueue.clear();
+
+                    return;
+                }
             }
         }
 
@@ -413,6 +540,17 @@ namespace CheckersSzeto
 
                 queueAllNextCaptureStates(nextState, currentTurn,
                     startX - 2, startY - 2, nodeQueue);
+
+                if(timer.isOver(milliseconds))
+                {
+                    delete currentState;
+
+                    currentState = NULL;
+
+                    nodeQueue.clear();
+
+                    return;
+                }
             }
 
             if(currentBoard->canCapture(startX, startY, BOTTOM_RIGHT))
@@ -427,6 +565,17 @@ namespace CheckersSzeto
 
                 queueAllNextCaptureStates(nextState, currentTurn,
                     startX + 2, startY - 2, nodeQueue);
+
+                if(timer.isOver(milliseconds))
+                {
+                    delete currentState;
+
+                    currentState = NULL;
+
+                    nodeQueue.clear();
+
+                    return;
+                }
             }
         }
 

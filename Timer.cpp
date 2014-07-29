@@ -93,6 +93,6 @@ namespace CheckersSzeto
 
 	bool Timer::isOver(const unsigned long &milliseconds) const
 	{
-		return milliseconds >= getTime();
+		return milliseconds <= getTime();
 	}
 }

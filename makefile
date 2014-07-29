@@ -1,4 +1,4 @@
-OBJS = ArrayStack.o Captured.o Board.o Node.o LinkedStack.o LinkedQueue.o Action.o ActionNode.o ActionQueue.o GameTreeNode.o PostOrderIterator.o GameTree.o Timer.o Game.o Checkers.o
+OBJS = ArrayStack.o Captured.o Board.o Node.o LinkedStack.o LinkedQueue.o Action.o ActionNode.o ActionQueue.o GameTreeNode.o PostOrderIterator.o Timer.o GameTree.o Game.o Checkers.o
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
@@ -11,14 +11,14 @@ Checkers.out: $(OBJS)
 Checkers.o: Checkers.cpp Game.h
 	$(CC) $(CFLAGS) Checkers.cpp
 
-Game.o: Game.h Game.cpp Board.h GameTree.h ActionQueue.h Action.h Timer.h globals.h
+Game.o: Game.h Game.cpp Board.h GameTree.h ActionQueue.h Action.h globals.h
 	$(CC) $(CFLAGS) Game.cpp
+
+GameTree.o: GameTree.h GameTree.cpp PostOrderIterator.h GameTreeNode.h LinkedQueue.h ActionQueue.h TimeUp.h Timer.h globals.h
+	$(CC) $(CFLAGS) GameTree.cpp
 
 Timer.o: Timer.h Timer.cpp
 	$(CC) $(CFLAGS) Timer.cpp
-
-GameTree.o: GameTree.h GameTree.cpp PostOrderIterator.h GameTreeNode.h LinkedQueue.h ActionQueue.h globals.h
-	$(CC) $(CFLAGS) GameTree.cpp
 
 PostOrderIterator.o: PostOrderIterator.h PostOrderIterator.cpp GameTreeNode.h LinkedStack.h
 	$(CC) $(CFLAGS) PostOrderIterator.cpp
