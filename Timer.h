@@ -1,3 +1,10 @@
+/** Class that holds a timer
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #ifndef TIMER_H
 #define TIMER_H
 

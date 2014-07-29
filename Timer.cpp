@@ -1,3 +1,10 @@
+/** Class that holds a timer
+  *
+  * @author Richard Szeto
+  *
+  *
+  */
+
 #include <iostream>
 #include <ctime>
 #include "Timer.h"
