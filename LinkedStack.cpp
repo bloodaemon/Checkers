@@ -173,6 +173,28 @@ namespace DataStructureSzeto
             length = 0;
         }
     }
+
+    template<class T>
+    void LinkedStack<T>::deleteNodes()
+    {
+        if(!isEmpty())
+        {
+            Node<T> *nextNode;
+
+            while(top != NULL)
+            {
+                nextNode = top->getLink();
+
+                top->deleteData();
+
+                delete top;
+
+                top = nextNode;
+            }
+
+            length = 0;
+        }
+    }
 }
 
 #endif

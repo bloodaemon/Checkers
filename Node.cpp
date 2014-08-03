@@ -61,6 +61,17 @@ namespace DataStructureSzeto
     }
 
     template<class T>
+    void Node<T>::deleteData()
+    {
+        if(data != NULL)
+        {
+            delete data;
+        }
+
+        data = NULL;
+    }
+
+    template<class T>
     Node<T>& Node<T>::operator =(const Node<T> &rightSide)
     {
         clear();

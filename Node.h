@@ -21,6 +21,7 @@ namespace DataStructureSzeto
         Node(const Node<T> &nodeObject);
         ~Node();
         void clear();
+        void deleteData();
         Node<T>& operator =(const Node<T> &rightSide);
         T* getData();
         Node<T>* getLink();

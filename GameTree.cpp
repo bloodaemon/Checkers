@@ -356,7 +356,7 @@ namespace CheckersSzeto
                 {
                     if(timer.isOver(milliseconds))
                     {
-                        nodeQueue.clear();
+                        nodeQueue.deleteNodes();
 
                         return;
                     }
@@ -374,7 +374,7 @@ namespace CheckersSzeto
 
                             if(timer.isOver(milliseconds))
                             {
-                                nodeQueue.clear();
+                                nodeQueue.deleteNodes();
 
                                 return;
                             }
@@ -383,7 +383,7 @@ namespace CheckersSzeto
                         {
                             if(timer.isOver(milliseconds))
                             {
-                                nodeQueue.clear();
+                                nodeQueue.deleteNodes();
 
                                 return;
                             }
@@ -451,7 +451,7 @@ namespace CheckersSzeto
 
             currentState = NULL;
 
-            nodeQueue.clear();
+            nodeQueue.deleteNodes();
 
             return;
         }
@@ -492,7 +492,7 @@ namespace CheckersSzeto
 
                     currentState = NULL;
 
-                    nodeQueue.clear();
+                    nodeQueue.deleteNodes();
 
                     return;
                 }
@@ -517,7 +517,7 @@ namespace CheckersSzeto
 
                     currentState = NULL;
 
-                    nodeQueue.clear();
+                    nodeQueue.deleteNodes();
 
                     return;
                 }
@@ -547,7 +547,7 @@ namespace CheckersSzeto
 
                     currentState = NULL;
 
-                    nodeQueue.clear();
+                    nodeQueue.deleteNodes();
 
                     return;
                 }
@@ -572,7 +572,7 @@ namespace CheckersSzeto
 
                     currentState = NULL;
 
-                    nodeQueue.clear();
+                    nodeQueue.deleteNodes();
 
                     return;
                 }

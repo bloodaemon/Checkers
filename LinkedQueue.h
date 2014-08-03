@@ -28,6 +28,7 @@ namespace DataStructureSzeto
         int getLength() const;
         bool isEmpty() const;
         void clear();
+        void deleteNodes();
 
     protected:
         Node<T> *front;

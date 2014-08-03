@@ -195,6 +195,30 @@ namespace DataStructureSzeto
             length = 0;
         }
     }
+
+    template<class T>
+    void LinkedQueue<T>::deleteNodes()
+    {
+        if(!isEmpty())
+        {
+            Node<T> *nextNode;
+
+            while(front != NULL)
+            {
+                nextNode = front->getLink();
+
+                front->deleteData();
+
+                delete front;
+
+                front = nextNode;
+            }
+
+            back = NULL;
+
+            length = 0;
+        }
+    }
 }
 
 #endif
